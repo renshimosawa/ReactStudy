@@ -15,46 +15,41 @@
         <div id="root">wait...</div>
         <script type="text/babel">
         let dom = document.querySelector('#root');
-           
-            const dfn={
+            
+            const p={
                 fontSize:"20px",
                 padding:"10px",
-            }
-            const dt={
+            };
+            const input={
                 fontSize:"16px",
-                color:'white',
-                backgroundColor:'#006',
-                padding:'10px',
-            }
-            const dd={
-                color:'black',
-                padding:'10px',
+                padding:"5px 10px",
             }
 
-            let data={
-                url:'http://google.com',
-                title:'Google',
-                caption:'※Googleの検索サイトです。'
+            let message ='お名前をどうぞ';
+            let in_val ='';
+
+            let doChange =(event)=>{
+                in_val = event.target.value;
+                message = 'こんにちは、'+in_val+'さん！';
             };
 
-            let el = (
+            let doAction = (event)=>{
+                let el =(
                 <div>
-                    {(()=>
-                    <dl>
-                        <dt style={dt}><dfn style={dfn}>
-                            {data.title}
-                        </dfn></dt>
-                        <dd style={dd}>
-                            {data.caption}
-                        </dd>
-                        <dd style={dd}>
-                            <a href={data.url}>※{data.title}に移動</a>
-                        </dd>
-                    </dl>    
-                    )()}
+                <p style={p}>{message}</p>
+                <div>
+                    <input type="text" id="input" style={input}
+                        onChange={doChange} />
+                    <button onClick={doAction} style={input}>
+                        Click
+                    </button>
                 </div>
-            );
-        ReactDOM.render(el, dom);
+                </div>
+                );
+            
+            ReactDOM.render(el, dom);
+            };
+            doAction();
         </script>
     </body>
 </html>
